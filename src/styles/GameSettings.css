@@ -1,0 +1,13 @@
+.game-settings{
+    display: flex;
+    flex-direction: column;
+}
+input[type='range']{
+    width: 200px;
+    cursor: pointer;
+}
+datalist{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}

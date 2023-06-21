@@ -1,0 +1,38 @@
+.card{
+    display: flex;
+    height: 120px;
+    width: 120px;
+    border: 2px solid azure;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+}
+.card:hover {
+    color: #C1423F;
+}
+.closed:hover{
+    background-color: azure;
+    border: 2px solid #C1423F;
+}
+.opened{
+    background-color: azure;
+    border: 2px solid #C1423F;
+}
+.opened > div{
+    display: flex;
+}
+.guessed{
+    background-color: azure;
+    border: 2px solid #C1423F;
+}
+.guessed > div{
+    display: flex;
+}
+.closed{
+    background-color: #C1423F;
+}
+.closed > div{
+    display: none;
+}
