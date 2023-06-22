@@ -1,23 +1,26 @@
 import '../styles/GameSettings.css';
 import {useEffect} from "react";
 
-function GameSettings({numberOfCards, setNumberOfCards, setCards}){
+function GameSettings({setCards}){
 
     const cardsArray = [];
+    let valueToGenerate = 6;
 
     function setNumber(e){
         e.preventDefault();
 
         const form = new FormData(e.target);
         const formJson = Object.fromEntries(form.entries());
-        const valueToGenerate = formJson.value;
-        setNumberOfCards(valueToGenerate);
+        valueToGenerate = formJson.value;
+        const populatedArray = populateArray();
+
+        cardsArray.push(...populatedArray.concat(populatedArray));
+        shuffleArray();
+        populateCards();
     }
 
-    //TODO Remove unnecessary useState
-
     function populateArray(){
-        return Array.from({length: numberOfCards}, () => Math.floor(Math.random() * 100));
+        return Array.from({length: valueToGenerate}, () => Math.floor(Math.random() * 100));
     }
 
     function shuffleArray(){
@@ -46,21 +49,15 @@ function GameSettings({numberOfCards, setNumberOfCards, setCards}){
                 guessed: false
             });
         });
+
         setCards([...data]);
     }
-
-    useEffect(() =>{
-            const populatedArray = populateArray();
-            cardsArray.push(...populatedArray.concat(populatedArray));
-            shuffleArray();
-            populateCards();
-    }, [numberOfCards]);
 
     return(
         <div className={'game-settings'}>
             Game Settings
             <form onSubmit={setNumber}>
-                <input type="range" name={'value'} min={'6'} max={'14'} list={'dataList'} step={'2'} defaultValue={numberOfCards}/>
+                <input type="range" name={'value'} min={'6'} max={'14'} list={'dataList'} step={'2'} defaultValue={valueToGenerate}/>
                 <datalist id="dataList">
                     <option value="6" label="6">6</option>
                     <option value="8" label="8">8</option>
